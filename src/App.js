@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import CustomerList from './customerList/CustomerList';
+import CustomerForm from './customerForm/CustomerForm';
+import { Grid } from '@material-ui/core';
 
 function App() {
+  const [refresh, setRefresh] = useState(false);
+
+  const toggleRefresh = () => {
+    setRefresh(!refresh);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid style={{display: 'flex', flexDirection: 'column', alignItems:'center'}}>
+
+      <CustomerList refresh={refresh}/>
+      <br />
+      <CustomerForm toggleRefresh={toggleRefresh}/>
+    </Grid>
   );
 }
 
